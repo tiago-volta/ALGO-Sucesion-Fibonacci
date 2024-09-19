@@ -205,3 +205,116 @@ int main() {
     printTiempos();
     return 0;
 }
+
+
+
+
+
+
+
+
+
+#include <stdio.h>
+#include <math.h>
+#include <sys/time.h>
+
+int fib1(int n);
+int fib2(int n);
+int fib3(int n);
+void test();
+double microsegundos();
+void imprimirTiempos(int (*func)(int), int ninicial,int nfinal, int incremento);
+void imprimirTablas();
+
+//gcc -Wall main.c -o P1 -lm
+//Poner la funcion test entre comentarios
+int main(void) {
+    imprimirTablas();
+    return 0;
+}
+
+int fib1(int n) {
+    if (n < 2)
+        return n;
+    return fib1(n-1) + fib1(n-2);
+}
+
+int fib2(int n) {
+    int i = 1, j = 0;
+    for (int k = 1; k <= n; k++) {
+        j = i +j;
+        i = j-i;
+    }
+    return j;
+}
+int fib3(int n) {
+    int i = 1, j = 0, k = 0, h = 1, t;
+    while ( n > 0 ) {
+        if ((n % 2) != 0) {
+            t = j * h;
+            j = (i * h) + (j * k) + t;
+            i = (i * k) + t;
+        }
+        t = h * h;
+        h = (2 * k * h) + t;
+        k = (k * k) + t;
+        n = n / 2;
+    }
+    return j;
+}
+
+void test() {
+    printf("\n%21s\n\n","Test Fibonacci");
+    printf("%2s%10s%8s%8s\n","n","fib1","fib2","fib3");
+    printf("%s%8s%8s%8s\n","----","----","----","----");
+    for(int i = 1; i <= 20; i++) {
+        printf("%-8d%d%8d%8d\n",i,fib1(i),fib2(i),fib3(i));
+    }
+}
+
+/* obtiene la hora actual en microsegundos */
+double microsegundos() {
+    struct timeval t;
+    if (gettimeofday(&t, NULL) < 0)
+        return 0.0;
+    return (t.tv_usec + t.tv_sec * 1000000.0);
+}
+
+void imprimirTiempos(int (*func)(int), int ninicial,int nfinal, int incremento) {
+    //N es el término de la sucesión de fibonacci a hallar
+    double t1, t2, t, x, y, z;
+    for (int n = ninicial; n <= nfinal; n = n*incremento) {
+        t1 = microsegundos();
+        func(n);
+        t2 = microsegundos();
+        t = t2-t1;
+        x = t / sqrt(log(n));   //Comparación con la cota superior
+        y = t / log(n);     //Comparacion con la cota superior
+        z = t / pow(n, 0.5);    //Comparacion con la cota superior
+        printf("%12d%15.3f%15.6f%15.6f%15.6f\n", n, t, x, y, z);
+    }
+}
+
+
+void imprimirTablas() {
+    printf("\n%55s\n\n", "Tablas de tiempos Fibonacci");
+
+    // Fibonacci 1
+    printf("\nAlgoritmo fibonacci 1\n");
+    printf("\n%12s%15s%19s%14s%15s\n", "n", "t(n)", "t(n)/sqrt(log(n))", "t(n)/log(n)", "t(n)/sqrt(n)");
+    imprimirTiempos(fib1, 2, 32, 2);   // Pequeños valores para fib1 ya que es recursivo
+
+    // Fibonacci 2
+    printf("\nAlgoritmo fibonacci 2\n");
+    printf("\n%12s%15s%19s%14s%15s\n", "n", "t(n)", "t(n)/sqrt(log(n))", "t(n)/log(n)", "t(n)/sqrt(n)");
+    imprimirTiempos(fib2, 1000, 10000000, 10); // Mayor rango para fib2 ya que es iterativo
+
+    // Fibonacci 3
+    printf("\nAlgoritmo fibonacci 3\n");
+    printf("\n%12s%15s%19s%14s%15s\n", "n", "t(n)", "t(n)/sqrt(log(n))", "t(n)/log(n)", "t(n)/n^0,5");
+    imprimirTiempos(fib3, 1000, 10000000, 10); // Mayor rango para fib3 ya que es optimizado
+}
+
+
+
+
