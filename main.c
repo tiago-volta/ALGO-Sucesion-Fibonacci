@@ -175,30 +175,23 @@ void tTiempos(int (*funct)(int), double exp1, double exp2, double exp3, int* val
 
 // Función para imprimir las tablas de los tiempos de los algoritmos
 void printTiempos() {
-    int i, max_prints = 3;
-    int valores_n_fib1[] = {2, 4, 8, 16, 32};  
-    int valores_n_fib2_y_fib3[] = {1000, 10000, 100000, 1000000, 10000000};  
+    int valores_n_fib1[] = {2, 4, 8, 16, 32};
+    int valores_n_fib2_y_fib3[] = {1000, 10000, 100000, 1000000, 10000000};
 
     // Tabla para fib1 (recursivo)
     printf(" (fib1)\n");
-    for (i = 0; i < max_prints; i++) {
-        printf("\n%8s%15s%19s%15s%16s\n", "n", "t(n)", "t(n)/n^1.8", "t(n)/n^2", "t(n)/n^2.2");
-        tTiempos(fib1, 1.8, 2, 2.2, valores_n_fib1, 5);
-    }
+    printf("\n%8s%15s%19s%15s%16s\n", "n", "t(n)", "t(n)/n^1.8", "t(n)/n^2", "t(n)/n^2.2");
+    tTiempos(fib1, 1.8, 2, 2.2, valores_n_fib1, 5);
 
     // Tabla para fib2 (iterativo)
     printf(" (fib2)\n");
-    for (i = 0; i < max_prints; i++) {
-        printf("\n%8s%15s%19s%15s%16s\n", "n", "t(n)", "t(n)/n^0.8", "t(n)/n^1", "t(n)/n^1.2");
-        tTiempos(fib2, 0.8, 1, 1.2, valores_n_fib2_y_fib3, 5);
-    }
+    printf("\n%8s%15s%19s%15s%16s\n", "n", "t(n)", "t(n)/n^0.8", "t(n)/n^1", "t(n)/n^1.2");
+    tTiempos(fib2, 0.8, 1, 1.2, valores_n_fib2_y_fib3, 5);
 
     // Tabla para fib3 (multiplicación de matrices)
     printf(" (fib3)\n");
-    for (i = 0; i < max_prints; i++) {
-        printf("\n%8s%15s%19s%15s%16s\n", "n", "t(n)", "t(n)/n^0.5", "t(n)/n^0.7", "t(n)/n^0.9");
-        tTiempos(fib3, 0.5, 0.7, 0.9, valores_n_fib2_y_fib3, 5);
-    }
+    printf("\n%8s%15s%19s%15s%16s\n", "n", "t(n)", "t(n)/n^0.5", "t(n)/n^0.7", "t(n)/n^0.9");
+    tTiempos(fib3, 0.5, 0.7, 0.9, valores_n_fib2_y_fib3, 5);
 }
 
 int main() {
