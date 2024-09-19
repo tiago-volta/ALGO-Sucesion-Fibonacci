@@ -43,17 +43,46 @@ int fib3(int n) {
     return j;
 }
 
-int main() {
+// Función para calcular los tiempos y generar la tabla
+void calcularTiempos(int (*funct)(int), double x, double y, double z) {
+    double t0, t1, tf;
     int n;
-    double t1, t2, t, x, y, z;
-    n=8;
-    t1 = microsegundos();
-    fib1(n);
-    t2 = microsegundos();
-    t = t2-t1;
-    x = t / sqrt(log(n));
-    y = t / log(n);
-    z = t / pow(n, 0.5);
-    printf("%12d%15.3f%15.6f%15.6f%15.6f\n", n, t, x, y, z);
+    int k = 1000;
+
+    printf("%8s%15s%15s%15s%15s\n", "n", "t(n)", "t(n)/sqrt(log(n))", "t(n)/log(n)", "t(n)/n^0.5");
+
+    for (n = 2; n <= 32; n = n * 2) {
+        t0 = microsegundos();
+        funct(n);
+        t1 = microsegundos();
+        tf = t1 - t0;
+
+        if (tf < 500) {  // Ajuste si el tiempo es demasiado pequeño
+            t0 = microsegundos();
+            for (int i = 0; i < k; i++) {
+                funct(n);
+            }
+            t1 = microsegundos();
+            tf = (t1 - t0) / k;
+            printf("(*) %5d %15.3f %15.6f %15.6f %15.6f\n", n, tf, tf / sqrt(log(n)), tf / log(n), tf / pow(n, 0.5));
+        } else {
+            printf("    %5d %15.3f %15.6f %15.6f %15.6f\n", n, tf, tf / sqrt(log(n)), tf / log(n), tf / pow(n, 0.5));
+        }
+    }
 }
 
+int main() {
+    // Imprimir tabla para fib1
+    printf("Tiempos para fib1 (recursivo)\n");
+    calcularTiempos(fib1, sqrt(log(2)), log(2), pow(2, 0.5));
+
+    // Imprimir tabla para fib2
+    printf("\nTiempos para fib2 (iterativo)\n");
+    calcularTiempos(fib2, sqrt(log(2)), log(2), pow(2, 0.5));
+
+    // Imprimir tabla para fib3
+    printf("\nTiempos para fib3 (algoritmo de multiplicación de matrices)\n");
+    calcularTiempos(fib3, sqrt(log(2)), log(2), pow(2, 0.5));
+
+    return 0;
+}
