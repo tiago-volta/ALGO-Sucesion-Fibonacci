@@ -31,14 +31,3 @@ Implementación iterativa que mejora el rendimiento con una complejidad lineal O
 ### Algoritmo fib3
 
 Uso de técnicas de multiplicación de matrices para calcular el valor de Fibonacci con una complejidad logarítmica O(log n). Adecuado para valores de `n` muy grandes.
-
-
-
-## Instrucciones de Uso
-
-1. **Compilación**
-
-   Para compilar el código, utiliza el siguiente comando:
-
-   ```bash
-   gcc -o fibonacci sucesionFibonacci.c
