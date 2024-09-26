@@ -4,3 +4,77 @@ En esta práctica se nos pide implementar tres algoritmos que calculan el n-ési
 En este informe los tiempos están en microsegundos, medimos cuanto tarda una ejecucion del algoritmo, después tenemos el umbral de confianza en 500 miccrosegundos así si el algoritmo ejecuta tarda menos en ejecutarse repetimos el algoritmo k veces midiendo el tiempo que tardan en ejecutarse estas k veces, para luego hacer un promedio de estas mediciones (En la tabla estos casos se resalta con *).
 
 En el caso de haber una medición anómala repetimoso el experimento, pero sino desaparece hay que documentarlo en el informe. 
+
+INFORME PRACTICA 1 ALGORITMOS
+-----------------------------
+
+******NOMBRES********
+--------------------
+
+Matías Alberto González Aliendre
+Pablo Jesús Herrrero Díaz
+Tiago Da Costa Teixeira Veloso e Volta
+
+SUCESION DE FIBONACCI
+---------------------
+
+****INTRODUCCION*****
+--------------------
+
+En esta primera practica de algoritmos desarrollamos y analizamos tres
+algoritmos que calculan el n-esimo numero de la sucesión de Fibonacci de
+forma computacional y de manera empírica el análisis teórico.
+
+****MAQUINA*******
+------------------
+
+Procesador: AMD Ryzen 5 4600H
+Memoria: 16,0 GB
+Modelo del Sistema: HP Pavilon Gaming Laptop 15-ec1xxx
+Arquitectura: x86-64
+Sistema Operativo: Ubuntu 22.04.5 LTS
+Kernel: Linux 6.8.0-40-generic
+
+ 
+
+******TABLAS******
+------------------
+
+
+
+Algoritmo fibonacci 1
+
+            n            t(n)          t(n)/1.1^n   t(n)/((1+sqrt(5))/2)^n   t(n)/2^n
+*           2           0.0126          0.010372          0.004794          0.00313750
+*           4           0.0321          0.021932          0.004685          0.00200687
+*           8           0.2370          0.110576          0.005045          0.00092590
+*          16          11.2457          2.447401          0.005095          0.00017160
+           32       24805.0000       1174.825343          0.005093          0.00000578
+
+Algoritmo fibonacci 2
+
+           n             t(n)          t(n)/n^0.8          t(n)/n         t(n)/n*log(n)
+*        1000           3.8190          0.015204          0.003819          0.00055286
+*       10000          37.8820          0.023902          0.003788          0.00041130
+*      100000         378.2030          0.037820          0.003782          0.00032850
+      1000000        3795.0000          0.060147          0.003795          0.00027469
+     10000000       38589.0000          0.096931          0.003859          0.00023941
+
+Algoritmo fibonacci 3
+
+           n             t(n)      t(n)/sqrt(log(n))     t(n)/log(n)        t(n)/n^0,5
+*        1000           0.0612          0.023285          0.008860          0.00193531
+*       10000           0.0812          0.026756          0.008816          0.00081200
+*      100000           0.1032          0.030415          0.008964          0.00032635
+*     1000000           0.1200          0.032285          0.008686          0.00012000
+*    10000000           0.1408          0.035071          0.008736          0.00004452
+
+
+
+
+En este informe los tiempos están en microsegundos, medimos cuanto tarda una ejecucion del algoritmo, 
+después tenemos el umbral de confianza en 500 miccrosegundos así si el algoritmo ejecuta tarda menos en ejecutarse 
+repetimos el algoritmo k veces midiendo el tiempo que tardan en ejecutarse estas k veces, para luego hacer un promedio de estas mediciones
+(En la tabla estos casos se resalta con *).
+
+
