@@ -8,10 +8,10 @@ int fib2(int n);
 int fib3(int n);
 void test();
 double microsegundos();
-void imprimirTiempos(int (*func)(int), const int * valores, int tipo);
+void imprimirTiempos(int (*func)(int), const int * valores, const int tipo,const int repeticiones);
 void imprimirTablas();
 double cotaAjustada(int n, int tipo);
-double medirTiempo(int (*func)(int),const int n,bool *promedio);
+double medirTiempo(int (*func)(int),const int n,bool *promedio,int k);
 double cotaSubestimada(int n, int tipo);
 double cotaSobreestimada(int n, int tipo);
 
@@ -72,7 +72,7 @@ double microsegundos() {
     return (t.tv_usec + t.tv_sec * 1000000.0);
 }
 
-double medirTiempo(int (*func)(int),const int n,bool *promedio){
+double medirTiempo(int (*func)(int),const int n,bool *promedio,int k){
     double t1, t2, t;
     t1 = microsegundos();
     func(n);
@@ -80,10 +80,10 @@ double medirTiempo(int (*func)(int),const int n,bool *promedio){
     t = t2-t1;
     if (t<500) {        //Si el tiempo es muy pequeño hacemos más repeticiones y hacemos una media
         t1 = microsegundos();
-        for (int j = 0; j < 1000; j++)
+        for (int j = 0; j < k; j++)
             func(n);
         t2 = microsegundos();
-        t = (t2 - t1) / 1000;
+        t = (t2 - t1) / k;
         *promedio = true;
     }
     return t;
@@ -128,13 +128,13 @@ double cotaSobreestimada(int n, int tipo) {
     }
 }
 
-void imprimirTiempos(int (*func)(int), const int * valores, const int tipo) {
+void imprimirTiempos(int (*func)(int), const int * valores, const int tipo,const int repeticiones) {
     //N es el término de la sucesión de fibonacci a hallar
     double t, x, y, z;
     for (int i = 0; i < 5; i++) {
         bool promedio = false;
         int n = valores[i];
-        t = medirTiempo(func,n,&promedio);
+        t = medirTiempo(func,n,&promedio,repeticiones);
         x = t / cotaSubestimada(n,tipo);   //Comparación con la cota superior
         y = t / cotaAjustada(n,tipo);     //Comparacion con la cota superior
         z = t / cotaSobreestimada(n,tipo);    //Comparacion con la cota superior
@@ -157,19 +157,19 @@ void imprimirTablas() {
     // Fibonacci 1
     printf("\nAlgoritmo fibonacci 1\n");
     printf("\n%13s%16s%20s%25s%11s\n", "n", "t(n)", "t(n)/1.1^n", "t(n)/((1+sqrt(5))/2)^n", "t(n)/2^n");
-    imprimirTiempos(fib1, valoresFib1,1);   // Pequeños valores para fib1 ya que es recursivo
+    imprimirTiempos(fib1, valoresFib1,1,100000);   // Pequeños valores para fib1 ya que es recursivo
     //tiemposFib1();
 
     // Fibonacci 2
     printf("\nAlgoritmo fibonacci 2\n");
     printf("\n%12s%17s%20s%16s%22s\n", "n", "t(n)", "t(n)/n^0.8", "t(n)/n", "t(n)/n*log(n)");
-    imprimirTiempos(fib2, valoresFib2Fib3,2); // Mayor rango para fib2 ya que es iterativo
+    imprimirTiempos(fib2, valoresFib2Fib3,2,1000); // Mayor rango para fib2 ya que es iterativo
     //tiemposFib2();
 
     // Fibonacci 3
     printf("\nAlgoritmo fibonacci 3\n");
     printf("\n%12s%17s%23s%16s%18s\n", "n", "t(n)", "t(n)/sqrt(log(n))", "t(n)/log(n)", "t(n)/n^0,5");
-    imprimirTiempos(fib3, valoresFib2Fib3 ,3); // Mayor rango para fib3 ya que es optimizado
+    imprimirTiempos(fib3, valoresFib2Fib3 ,3,10000); // Mayor rango para fib3 ya que es optimizado
     //tiemposFib3();
 }
 
