@@ -1,0 +1,6 @@
+Informe práctica 1 de Algoritmos
+En esta práctica se nos pide implementar tres algoritmos que calculan el n-ésimo numero de la sucesión de fibonacci.
+
+En este informe los tiempos están en microsegundos, medimos cuanto tarda una ejecucion del algoritmo, después tenemos el umbral de confianza en 500 miccrosegundos así si el algoritmo ejecuta tarda menos en ejecutarse repetimos el algoritmo k veces midiendo el tiempo que tardan en ejecutarse estas k veces, para luego hacer un promedio de estas mediciones (En la tabla estos casos se resalta con *).
+
+En el caso de haber una medición anómala repetimoso el experimento, pero sino desaparece hay que documentarlo en el informe. 
