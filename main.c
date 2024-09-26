@@ -135,9 +135,9 @@ void imprimirTiempos(int (*func)(int), const int * valores, const int tipo,const
         bool promedio = false;
         int n = valores[i];
         t = medirTiempo(func,n,&promedio,repeticiones);
-        x = t / cotaSubestimada(n,tipo);   //Comparación con la cota superior
-        y = t / cotaAjustada(n,tipo);     //Comparacion con la cota superior
-        z = t / cotaSobreestimada(n,tipo);    //Comparacion con la cota superior
+        x = t / cotaSubestimada(n,tipo);   //Comparación con la cota subestimada
+        y = t / cotaAjustada(n,tipo);     //Comparacion con la cota ajustada
+        z = t / cotaSobreestimada(n,tipo);    //Comparacion con la cota sobreestimada
         if (promedio) {
             printf("*");
         }else {
