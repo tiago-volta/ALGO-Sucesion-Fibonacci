@@ -1,10 +1,3 @@
-Informe práctica 1 de Algoritmos
-En esta práctica se nos pide implementar tres algoritmos que calculan el n-ésimo numero de la sucesión de fibonacci.
-
-En este informe los tiempos están en microsegundos, medimos cuanto tarda una ejecucion del algoritmo, después tenemos el umbral de confianza en 500 miccrosegundos así si el algoritmo ejecuta tarda menos en ejecutarse repetimos el algoritmo k veces midiendo el tiempo que tardan en ejecutarse estas k veces, para luego hacer un promedio de estas mediciones (En la tabla estos casos se resalta con *).
-
-En el caso de haber una medición anómala repetimoso el experimento, pero sino desaparece hay que documentarlo en el informe. 
-
 INFORME PRACTICA 1 ALGORITMOS
 -----------------------------
 
@@ -35,11 +28,19 @@ Arquitectura: x86-64
 Sistema Operativo: Ubuntu 22.04.5 LTS
 Kernel: Linux 6.8.0-40-generic
 
+UNIDADES DE TIEMPO UTILIZADAS
+-----------------------------
+
+En este informe los tiempos de ejecución de los algoritmos se midieron en microsegundos.
+Para garantizar la precisión de las mediciones, se estableció un umbral de confianza de 
+500 microsegundos, si el tiempo de ejecución es menor el algoritmo se repite k veces y 
+se obtiene el promedio dividiendo el tiempo total entre las ejecuciones. Los casos donde
+se aplico este procedimiento están marcados con un asterisco en las tablas.
+
  
 
 ******TABLAS******
 ------------------
-
 
 
 Algoritmo fibonacci 1
@@ -51,6 +52,12 @@ Algoritmo fibonacci 1
 *          16          11.2457          2.447401          0.005095          0.00017160
            32       24805.0000       1174.825343          0.005093          0.00000578
 
+
+1.1^n es la cota subestimada
+(1+sqrt(5))/2)^n es la cota ajustada y la Cte = 0.005
+2^n es la cota sobreestimada
+
+
 Algoritmo fibonacci 2
 
            n             t(n)          t(n)/n^0.8          t(n)/n         t(n)/n*log(n)
@@ -59,6 +66,12 @@ Algoritmo fibonacci 2
 *      100000         378.2030          0.037820          0.003782          0.00032850
       1000000        3795.0000          0.060147          0.003795          0.00027469
      10000000       38589.0000          0.096931          0.003859          0.00023941
+
+
+n^0.8 es la cota subestimada
+n es la cota ajustada y la Cte = 0.0037
+n*log(n) es la cota sobreestimada
+
 
 Algoritmo fibonacci 3
 
@@ -69,12 +82,27 @@ Algoritmo fibonacci 3
 *     1000000           0.1200          0.032285          0.008686          0.00012000
 *    10000000           0.1408          0.035071          0.008736          0.00004452
 
+sqrt(log(n) es la cota subestimada
+log(n) es la cota ajustada y la Cte = 0.0088
+n^0,5 es la cota sobreestimada
 
 
+****CONCLUSIONES****
+--------------------
 
-En este informe los tiempos están en microsegundos, medimos cuanto tarda una ejecucion del algoritmo, 
-después tenemos el umbral de confianza en 500 miccrosegundos así si el algoritmo ejecuta tarda menos en ejecutarse 
-repetimos el algoritmo k veces midiendo el tiempo que tardan en ejecutarse estas k veces, para luego hacer un promedio de estas mediciones
-(En la tabla estos casos se resalta con *).
+Fibonacci 1: Se trata del algoritmo menos eficiente debido a su complejidad exponencial.
+	     A medida que el valor de n aumenta, los tiempos de ejecución del algoritmo
+	     incrementan , el tiempo de ejecución se vuelve considerablemente más alto 
+             en comparación con los otros algoritmos.
 
+Fibonacci 2: Mejora respecto al primer algoritmo debido a su complejidad lineal. 
+             Los tiempos son más manejables y las cotas analizadas siguen un 
+             comportamiento teórico.
 
+Fibonacci 3: Se trata del algoritmo más eficiente, con una complejidad de O(log(n))
+             Los tiempos de ejecución son casi constantes para los valores de n 
+             evaludados.
+
+En general, los resultdados empíricos muestran una clara diferencia en la eficencia de los
+tres algoritmosdestacando  Fibonacci 3 como el  algoritmo más eficiente en cuanto a tiempo 
+de ejecución y para valores grandes de n.
