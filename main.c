@@ -46,12 +46,12 @@ int fib3(int n) {
 
 int main() {
     int n;
-    double t1, t2, t, x, y;
+    double t1, t2, t, x, y, z;
     int k = 1000;  // Número de repetições
 
     // Medición para fib1
     printf("\nMediciones para fib1:\n");
-    printf("%8s%22s%22s%22s\n", "n", "t(n)", "t(n)/sqrt(log(n))", "t(n)/log(n)");
+    printf("%8s%22s%22s%22s%22s\n", "n", "t(n)", "t(n)/sqrt(log(n))", "t/((1+sqrt(5))/2)", "t(n)/log(n)");
     int n_values_fib1[] = {2, 4, 8, 16, 32};
     for (int i = 0; i < 5; i++) {
         n = n_values_fib1[i];
@@ -70,14 +70,15 @@ int main() {
             t = (t2 - t1) / k;  // Tempo médio
         }
 
-        x = t / pow(1.1, n);
-        y = t / pow(2, n);
-        printf("%8d%22.3f%22.6f%22.6f\n", n, t, x, y);
+        x = t / pow(1.1, n); // Subestimada
+        y = t / pow(2, n); // Sobreestimada
+        z = t / pow((1 + sqrt(5)) / 2, n); // Ajustada
+        printf("%8d%22.3f%22.6f%22.6f%22.6f\n", n, t, x, z, y);
     }
 
     // Medición para fib2
     printf("\nMediciones para fib2:\n");
-    printf("%8s%22s%22s%22s\n", "n", "t(n)", "t(n)/sqrt(log(n))", "t(n)/log(n)");
+    printf("%8s%22s%22s%22s%22s\n", "n", "t(n)", "t(n)/sqrt(log(n))", "t / n", "t(n)/log(n)"); // SUb Aj Sobre
     int n_valores_fib2[] = {1000, 10000, 100000, 1000000, 10000000};
     for (int i = 0; i < 5; i++) {
         n = n_valores_fib2[i];
@@ -90,20 +91,21 @@ int main() {
         if (t < 500) {
             t1 = microsegundos();
             for (int j = 0; j < k; j++) {
-                fib2(n);  
+                fib2(n);
             }
             t2 = microsegundos();
             t = (t2 - t1) / k;  // Tempo médio
         }
 
-        x = t / pow(n, 0.8);
-        y = t / (n * log(n));
-        printf("%8d%22.3f%22.6f%22.6f\n", n, t, x, y);
+        x = t / pow(n, 0.8); // Subestimada
+        y = t / (n * log(n)); // Sobreestimada
+        z = t / n; //Ajustada
+        printf("%8d%22.3f%22.6f%22.6f%22.6f\n", n, t, x, z, y);
     }
 
     // Medición para fib3
     printf("\nMediciones para fib3:\n");
-    printf("%8s%22s%22s%22s\n", "n", "t(n)", "t(n)/sqrt(log(n))", "t(n)/log(n)");
+    printf("%8s%22s%22s%22s%22s\n", "n", "t(n)", "t(n)/log(n)", "t(n)/sqrt(log(n))", "t(n)/sqrt(n)");
     int n_valores_fib3[] = {1000, 10000, 100000, 1000000, 10000000};
     for (int i = 0; i < 5; i++) {
         n = n_valores_fib3[i];
@@ -122,11 +124,11 @@ int main() {
             t = (t2 - t1) / k;  // Tempo médio
         }
 
-        x = t / log(n);
-        y = t / sqrt(n);
-        printf("%8d%22.3f%22.6f%22.6f\n", n, t, x, y);
+        x = t / log(n); //Ajustada
+        y = t / sqrt(n); // Cota Sobreestimada
+        z = t / sqrt(log(n)); // Cota Subestimada
+        printf("%8d%22.3f%22.6f%22.6f%22.6f\n", n, t, x, z, y);
     }
 
     return 0;
 }
-
