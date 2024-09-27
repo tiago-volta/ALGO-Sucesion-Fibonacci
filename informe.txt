@@ -129,5 +129,5 @@ Fibonacci 3: Se trata del algoritmo más eficiente, con una complejidad de O(log
              evaludados.
 
 En general, los resultdados empíricos muestran una clara diferencia en la eficencia de los
-tres algoritmosdestacando  Fibonacci 3 como el  algoritmo más eficiente en cuanto a tiempo 
+tres algoritmos destacando  Fibonacci 3 como el  algoritmo más eficiente en cuanto a tiempo 
 de ejecución y para valores grandes de n.
