@@ -165,17 +165,17 @@ void imprimirTablas() {
 
     //Fibonacci 1
     printf("\nAlgoritmo fibonacci 1\n");
-    printf("\n%13s%16s%22s%17s%21s\n", "n", "t(n)", "Cota Subestimada", "Cota Ajustada", "Cota Sobreestimada");
+    printf("\n%13s%16s%20s%25s%11s\n", "n", "t(n)", "t(n)/1.1^n", "t(n)/((1+sqrt(5))/2)^n", "t(n)/2^n");
     imprimirTiempos(fib1, valoresFib1, 1, 100000);
 
     //Fibonacci 2
     printf("\nAlgoritmo fibonacci 2\n");
-    printf("\n%12s%17s%22s%18s%23s\n", "n", "t(n)", "Cota Subestimada", "Cota Ajustada", "Cota Sobreestimada");
+    printf("\n%12s%17s%20s%16s%22s\n", "n", "t(n)", "t(n)/n^0.8", "t(n)/n", "t(n)/n*log(n)");
     imprimirTiempos(fib2, valoresFib2Fib3, 2, 1000);
 
     //Fibonacci 3
     printf("\nAlgoritmo fibonacci 3\n");
-    printf("\n%12s%17s%23s%16s%22s\n", "n", "t(n)", "Cota Subestimada", "Cota Ajustada", "Cota Sobreestimada");
+    printf("\n%12s%17s%23s%16s%18s\n", "n", "t(n)", "t(n)/sqrt(log(n))", "t(n)/log(n)", "t(n)/n^0,5");
     imprimirTiempos(fib3, valoresFib2Fib3 ,3,10000);
 }
 
