@@ -9,14 +9,14 @@ int fib2(int n);
 int fib3(int n);
 void test();
 double microsegundos();
-void imprimirTiempos(int (*func)(int), const int * valores, const int tipo, const int repeticiones);
+void imprimirTiempos(int(*func)(int),int *valores, int tipo, int repeticiones);
 void imprimirTablas();
 double cotaAjustada(int n, int tipo);
 double medirTiempo(int (*func)(int), const int n, bool *promedio, int k);
 double cotaSubestimada(int n, int tipo);
 double cotaSobreestimada(int n, int tipo);
 
-//Realiza las pruebas de los algoritmos Fibonacci y muestra las tablas de tiempos
+//Realiza las pruebas de los algoritmos y muestra las tablas de tiempos
 int main(void) {
     test();
     imprimirTablas();
@@ -40,7 +40,7 @@ int fib2(int n) {
     return j;
 }
 
-//Implementación del algoritmo Fibonacci 3: utilizando multiplicación de matrices
+//Implementación del algoritmo Fibonacci 3: multiplicación de matrices
 int fib3(int n) {
     int i = 1, j = 0, k = 0, h = 1, t;
     while (n > 0) {
@@ -138,7 +138,7 @@ double cotaSobreestimada(int n, int tipo) {
 }
 
 //Imprime los tiempos de ejecución de la función dada
-void imprimirTiempos(int (*func)(int), const int * valores, const int tipo, const int repeticiones) {
+void imprimirTiempos(int(*func)(int),int* valores, int tipo, int repeticiones){
     double t, x, y, z;
     for (int i = 0; i < 5; i++) {
         bool promedio = false; //Indica si se calculó un promedio
@@ -151,7 +151,7 @@ void imprimirTiempos(int (*func)(int), const int * valores, const int tipo, cons
         if (promedio) {
             printf("*"); //Marca si se hizo un promedio
         } else {
-            printf(" "); //Marca si no se hizo un promedio, para mantener la alineación
+            printf(" "); //Para mantener la alineación en la tabla
         }
         printf("%12d%17.4f%18.6f%18.6f%20.8f\n", n, t, x, y, z);
     }
@@ -159,24 +159,27 @@ void imprimirTiempos(int (*func)(int), const int * valores, const int tipo, cons
 
 //Imprime las tablas de tiempos para los diferentes algoritmos de Fibonacci
 void imprimirTablas() {
-    int valoresFib1[5] = {2, 4, 8, 16, 32}; //Valores para el algoritmo 1
-    int valoresFib2Fib3[5] = {1000, 10000, 100000, 1000000, 10000000}; //Valores para los algoritmos 2 y 3
+    //Valores para el algoritmo 1
+    int valoresFib1[5] = {2, 4, 8, 16, 32};
+    //Valores para los algoritmos 2 y 3
+    int valoresFib2Fib3[5] = {1000, 10000, 100000, 1000000, 10000000};
     printf("\n%55s\n\n", "Tablas de tiempos Fibonacci");
 
     //Fibonacci 1
     printf("\nAlgoritmo fibonacci 1\n");
-    printf("\n%13s%16s%20s%25s%11s\n", "n", "t(n)", "t(n)/1.1^n", "t(n)/((1+sqrt(5))/2)^n", "t(n)/2^n");
+    printf("\n%13s%16s%20s%25s%11s\n",
+        "n", "t(n)", "t(n)/1.1^n", "t(n)/((1+sqrt(5))/2)^n", "t(n)/2^n");
     imprimirTiempos(fib1, valoresFib1, 1, 100000);
 
     //Fibonacci 2
     printf("\nAlgoritmo fibonacci 2\n");
-    printf("\n%12s%17s%20s%16s%22s\n", "n", "t(n)", "t(n)/n^0.8", "t(n)/n", "t(n)/n*log(n)");
+    printf("\n%12s%17s%20s%16s%22s\n",
+        "n", "t(n)", "t(n)/n^0.8", "t(n)/n", "t(n)/n*log(n)");
     imprimirTiempos(fib2, valoresFib2Fib3, 2, 1000);
 
     //Fibonacci 3
     printf("\nAlgoritmo fibonacci 3\n");
-    printf("\n%12s%17s%23s%16s%18s\n", "n", "t(n)", "t(n)/sqrt(log(n))", "t(n)/log(n)", "t(n)/n^0,5");
+    printf("\n%12s%17s%23s%16s%18s\n",
+        "n", "t(n)", "t(n)/sqrt(log(n))", "t(n)/log(n)", "t(n)/n^0,5");
     imprimirTiempos(fib3, valoresFib2Fib3 ,3,10000);
 }
-
-
