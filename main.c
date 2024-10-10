@@ -33,7 +33,7 @@ int fib1(int n) {
 //Implementación del algoritmo Fibonacci 2: iterativo
 int fib2(int n) {
     int i = 1, j = 0;
-    for (int k = 1; k <= n; k++) {
+    for (int k = 1; k <= n; k++) {                                                //Error: No definir la variable en el bucle for, todas las variables de una función se definen al principio
         j = i + j; //Calcula el siguiente número de Fibonacci
         i = j - i; //Actualiza i para la siguiente iteración
     }
@@ -62,7 +62,7 @@ void test() {
     printf("\n%21s\n\n", "Test Fibonacci");
     printf("%2s%10s%8s%8s\n", "n", "fib1", "fib2", "fib3");
     printf("%s%8s%8s%8s\n", "----", "----", "----", "----");
-    for (int i = 1; i <= 20; i++) {
+    for (int i = 1; i <= 20; i++) {                                                        //Error: No definir la variable en el bucle for, todas las variables de una función se definen al principio
         printf("%-8d%d%8d%8d\n", i, fib1(i), fib2(i), fib3(i));
     }
 }
@@ -86,7 +86,7 @@ double medirTiempo(int (*func)(int), const int n, bool *promedio, int k) {
     //Si el tiempo es menor que 500 microsegundos
     if (t < 500) {
         t1 = microsegundos();
-        for (int j = 0; j < k; j++)
+        for (int j = 0; j < k; j++)                                                    //Error: No definir la variable en el bucle for, todas las variables de una función se definen al principio
             func(n); //Llama a la función varias veces
         t2 = microsegundos();
         t = (t2 - t1) / k;
@@ -140,9 +140,9 @@ double cotaSobreestimada(int n, int tipo) {
 //Imprime los tiempos de ejecución de la función dada
 void imprimirTiempos(int(*func)(int),int* valores, int tipo, int repeticiones){
     double t, x, y, z;
-    for (int i = 0; i < 5; i++) {
-        bool promedio = false; //Indica si se calculó un promedio
-        int n = valores[i];
+    for (int i = 0; i < 5; i++) {                                                                //Error: No definir la variable en el bucle for, todas las variables de una función se definen al principio
+        bool promedio = false; //Indica si se calculó un promedio                                //Error: No definir las varibles al principio de la función, además, las definimos dentro del bucle son ineficientes
+        int n = valores[i];                                                                      //Error: No definir las varibles al principio de la función, además, las definimos dentro del bucle son ineficientes
         t = medirTiempo(func, n, &promedio, repeticiones);
         x = t / cotaSubestimada(n, tipo);
         y = t / cotaAjustada(n, tipo);
