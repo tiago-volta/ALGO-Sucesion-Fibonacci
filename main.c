@@ -183,3 +183,125 @@ void imprimirTablas() {
         "n", "t(n)", "t(n)/sqrt(log(n))", "t(n)/log(n)", "t(n)/n^0,5");
     imprimirTiempos(fib3, valoresFib2Fib3 ,3,10000);
 }
+
+
+
+/ Función que verifica si un arreglo está ordenado de manera ascendente
+bool ordenado_ascendente(int arr[], int tam) {
+    for (int i = 0; i < tam - 1; i++) {
+        if (arr[i] > arr[i + 1]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+// Función que verifica si un arreglo está ordenado de manera descendente
+bool ordenado_descendente(int arr[], int tam) {
+    for (int i = 0; i < tam - 1; i++) {
+        if (arr[i] < arr[i + 1]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+// Función que verifica si un arreglo está ordenado de cualquier manera
+int ordenado(int arr[], int tam) {
+    if (ordenado_ascendente(arr, tam)) {
+        return 1;
+    } else if (ordenado_descendente(arr, tam)) {
+        return -1;
+    } else {
+        return 0;
+    }
+}
+
+
+
+
+
+
+
+// Función para inicializar un arreglo con valores aleatorios
+void inicializar_aleatorio(int arr[], int tam) {
+    srand(time(NULL));
+    for (int i = 0; i < tam; i++) {
+        arr[i] = rand() % 31 - 15; // Valores aleatorios entre -15 y 15
+    }
+}
+
+// Función para inicializar un arreglo con valores descendentes
+void inicializar_descendente(int arr[], int tam) {
+    for (int i = 0; i < tam; i++) {
+        arr[i] = tam - i;
+    }
+}
+
+int main(void) {
+   int arr1[] = {3, -3, 0, 17, -5, 2, 11, 13, 6, 1, 7, 14, 1, -2, 5, -14, -2};
+    int tam1 = sizeof(arr1) / sizeof(arr1[0]);
+
+    printf("Ordenación por inserción con inicialización aleatoria\n");
+    imprimir_arreglo(arr1, tam1);
+    printf("ordenado? %d\n", ordenado(arr1, tam1));
+    printf("ordenando...\n");
+    imprimir_arreglo(arr1, tam1);
+    printf("ordenado? %d\n", ordenado(arr1, tam1));
+
+    int tam2 = 10;
+    int arr2[tam2];
+    inicializar_descendente(arr2, tam2);
+
+    printf("Ordenación por inserción con inicialización descendente\n");
+    imprimir_arreglo(arr2, tam2);
+    printf("ordenado? %d\n", ordenado(arr2, tam2));
+    printf("ordenando...\n");
+    imprimir_arreglo(arr2, tam2);
+    printf("ordenado? %d\n", ordenado(arr2, tam2));
+
+    int arr3[] = {3, -3, 0, 17, -5, 2, 11, 13, 6, 1, 7, 14, 1, -2, 5, -14, -2};
+    int tam3 = sizeof(arr3) / sizeof(arr3[0]);
+
+    printf("Ordenación rápida con inicialización aleatoria\n");
+    imprimir_arreglo(arr3, tam3);
+    printf("ordenado? %d\n", ordenado(arr3, tam3));
+    printf("ordenando...\n");
+    imprimir_arreglo(arr3, tam3);
+    printf("ordenado? %d\n", ordenado(arr3, tam3));
+
+    int arr4[tam2];
+    inicializar_descendente(arr4, tam2);int arr1[] = {3, -3, 0, 17, -5, 2, 11, 13, 6, 1, 7, 14, 1, -2, 5, -14, -2};
+    int tam1 = sizeof(arr1) / sizeof(arr1[0]);
+
+    printf("Ordenación por inserción con inicialización aleatoria\n");
+    imprimir_arreglo(arr1, tam1);
+    printf("ordenado? %d\n", ordenado(arr1, tam1));
+    printf("ordenando...\n");
+    imprimir_arreglo(arr1, tam1);
+    printf("ordenado? %d\n", ordenado(arr1, tam1));
+
+    int tam2 = 10;
+    int arr2[tam2];
+    inicializar_descendente(arr2, tam2);
+
+    printf("Ordenación por inserción con inicialización descendente\n");
+    imprimir_arreglo(arr2, tam2);
+    printf("ordenado? %d\n", ordenado(arr2, tam2));
+    printf("ordenando...\n");
+    imprimir_arreglo(arr2, tam2);
+    printf("ordenado? %d\n", ordenado(arr2, tam2));
+
+    int arr3[] = {3, -3, 0, 17, -5, 2, 11, 13, 6, 1, 7, 14, 1, -2, 5, -14, -2};
+    int tam3 = sizeof(arr3) / sizeof(arr3[0]);
+
+    printf("Ordenación rápida con inicialización aleatoria\n");
+    imprimir_arreglo(arr3, tam3);
+    printf("ordenado? %d\n", ordenado(arr3, tam3));
+    printf("ordenando...\n");
+    imprimir_arreglo(arr3, tam3);
+    printf("ordenado? %d\n", ordenado(arr3, tam3));
+
+    int arr4[tam2];
+    inicializar_descendente(arr4, tam2);
+
